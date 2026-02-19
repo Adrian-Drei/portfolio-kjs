@@ -111,6 +111,42 @@
       body {
         scroll-behavior: smooth;
       }
+      .animate-once {
+        opacity: 0;
+        transform: translateY(50px); /* start position */
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+
+      .animate-once.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .from-left {
+        transform: translateX(-50px);
+      }
+      .from-right {
+        transform: translateX(50px);
+      }
+      .type-once {
+        opacity: 0;
+      }
+
+      .type-once.show {
+        opacity: 1;
+      }
+      .type-once.show::after {
+        content: "|";
+        animation: blink 1s infinite;
+        margin-left: 3px;
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
     </style>
     <style>
       body {
@@ -187,12 +223,12 @@
           <div class="flex-1 space-y-8 text-center md:text-left">
             <div class="space-y-4">
               <span
-                class="text-primary uppercase tracking-[0.3em] text-xs font-bold"
+                class="text-primary uppercase tracking-[0.3em] text-xs font-bold animate-once from-left"
               >
                 HR Professional | Graceful Expert
               </span>
               <h1
-                class="text-5xl md:text-7xl font-bold text-[#161212] leading-[1.1]"
+                class="text-5xl md:text-7xl font-bold text-[#161212] leading-[1.1] animate-once from-left"
               >
                 Strategizing
                 <br />
@@ -200,7 +236,7 @@
               </h1>
             </div>
             <p
-              class="text-lg md:text-xl text-[#816a6a] max-w-md leading-relaxed"
+              class="text-lg md:text-xl text-[#816a6a] max-w-md leading-relaxed animate-once from-left"
             >
               Results-driven HR professional with experience in HR
               Administration, Generalist functions, and Compensation & Benefits.
@@ -216,7 +252,7 @@
               detail, and ability to manage multi-functional responsibilities in
               fast-paced environments.
             </p>
-            <div class="pt-4">
+            <div class="pt-4 animate-once from-left">
               <button
                 class="bg-primary hover:bg-primary/90 text-white px-10 py-4 rounded-full text-sm font-bold tracking-widest uppercase transition-all shadow-lg shadow-primary/20"
               >
@@ -224,7 +260,7 @@
               </button>
             </div>
           </div>
-          <div class="relative flex-1 w-full max-w-md">
+          <div class="relative flex-1 w-full max-w-md animate-once from-right">
             <div
               class="absolute inset-0 bg-primary/20 organic-shape -rotate-6 translate-x-4 translate-y-4 -z-10"
             ></div>
@@ -255,7 +291,9 @@
         class="bg-white/50 py-20 px-6 border-y border-primary/10"
       >
         <div class="max-w-6xl mx-auto">
-          <div class="flex flex-col items-center mb-16 text-center">
+          <div
+            class="flex flex-col items-center mb-16 text-center animate-once"
+          >
             <h2
               class="text-3xl md:text-4xl font-bold text-[#161212] mb-4 italic"
             >
@@ -266,7 +304,7 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- HR Admin -->
             <div
-              class="group bg-white p-8 rounded-2xl soft-shadow border border-primary/5 hover:border-primary/20 transition-all duration-500"
+              class="group animate-once bg-white p-8 rounded-2xl soft-shadow border border-primary/5 hover:border-primary/20 transition-all duration-500"
             >
               <div
                 class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform"
@@ -297,7 +335,8 @@
             </div>
             <!-- Comp & Benefits -->
             <div
-              class="group bg-white p-8 rounded-2xl soft-shadow border border-primary/5 hover:border-primary/20 transition-all duration-500"
+              data-delay="200"
+              class="group animate-once bg-white p-8 rounded-2xl soft-shadow border border-primary/5 hover:border-primary/20 transition-all duration-500"
             >
               <div
                 class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform"
@@ -320,7 +359,8 @@
             </div>
             <!-- Sales & Appointment Setting -->
             <div
-              class="group bg-white p-8 rounded-2xl soft-shadow border border-primary/5 hover:border-primary/20 transition-all duration-500"
+              data-delay="400"
+              class="group animate-once bg-white p-8 rounded-2xl soft-shadow border border-primary/5 hover:border-primary/20 transition-all duration-500"
             >
               <div
                 class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform"
@@ -338,7 +378,8 @@
             </div>
             <!-- OC Verification -->
             <div
-              class="group bg-white p-8 rounded-2xl soft-shadow border border-primary/5 hover:border-primary/20 transition-all duration-500"
+              data-delay="600"
+              class="group animate-once bg-white p-8 rounded-2xl soft-shadow border border-primary/5 hover:border-primary/20 transition-all duration-500"
             >
               <div
                 class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform"
@@ -367,17 +408,23 @@
           class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-64 bg-primary/5 -rotate-3 -z-10"
         ></div>
         <div class="max-w-3xl mx-auto text-center">
-          <span class="material-symbols-outlined text-gold-muted text-5xl mb-6">
+          <span
+            class="material-symbols-outlined text-gold-muted text-5xl mb-6 animate-once"
+          >
             format_quote
           </span>
           <blockquote
-            class="text-2xl md:text-3xl italic text-[#4a3f3f] leading-snug font-medium mb-8"
+            data-speed="50"
+            class="text-2xl type-once md:text-3xl italic text-[#4a3f3f] leading-snug font-medium mb-8"
           >
             "HR should not be defined by what it does, but by what it delivers —
             results that enrich the organization’s value to customers,
             investors, and employees."
           </blockquote>
-          <p class="uppercase tracking-widest text-xs font-bold text-primary">
+          <p
+            class="uppercase tracking-widest text-xs font-bold text-primary animate-once"
+            data-delay="11000"
+          >
             — Dave Ulrich
           </p>
         </div>
@@ -393,18 +440,21 @@
           <div
             class="absolute -bottom-12 -left-12 w-64 h-64 bg-white/10 organic-shape"
           ></div>
-          <h2 class="text-4xl md:text-5xl font-bold text-[#161212] mb-6 italic">
+          <h2
+            class="text-4xl md:text-5xl font-bold text-[#161212] mb-6 italic animate-once"
+          >
             Let's Connect
           </h2>
-          <p class="text-lg text-[#6b5858] mb-10 max-w-md mx-auto">
+          <p class="text-lg text-[#6b5858] mb-10 max-w-md mx-auto animate-once">
             Ready to elevate your HR strategy or discuss potential
             collaborations? My inbox is always open.
           </p>
           <div class="flex sm:flex-row gap-4 justify-center">
             <div class="flex flex-wrap justify-center items-center gap-8">
               <a
+                data-delay="400"
                 aria-label="Telegram"
-                class="group flex flex-col items-center gap-2 transition-transform hover:scale-110"
+                class="group animate-once from-left flex flex-col items-center gap-2 transition-transform hover:scale-110"
                 href="#"
               >
                 <div
@@ -421,8 +471,9 @@
                 </span>
               </a>
               <a
+                data-delay="600"
                 aria-label="Facebook"
-                class="group flex flex-col items-center gap-2 transition-transform hover:scale-110"
+                class="group animate-once from-left flex flex-col items-center gap-2 transition-transform hover:scale-110"
                 href="#"
               >
                 <div
@@ -439,8 +490,9 @@
                 </span>
               </a>
               <a
+                data-delay="800"
                 aria-label="Messenger"
-                class="group flex flex-col items-center gap-2 transition-transform hover:scale-110"
+                class="group animate-once from-left flex flex-col items-center gap-2 transition-transform hover:scale-110"
                 href="#"
               >
                 <div
@@ -457,8 +509,9 @@
                 </span>
               </a>
               <a
+                data-delay="1000"
                 aria-label="Viber"
-                class="group flex flex-col items-center gap-2 transition-transform hover:scale-110"
+                class="group animate-once from-left flex flex-col items-center gap-2 transition-transform hover:scale-110"
                 href="#"
               >
                 <div
@@ -475,8 +528,9 @@
                 </span>
               </a>
               <a
+                data-delay="1200"
                 aria-label="LinkedIn"
-                class="group flex flex-col items-center gap-2 transition-transform hover:scale-110"
+                class="group animate-once from-left flex flex-col items-center gap-2 transition-transform hover:scale-110"
                 href="#"
               >
                 <div
@@ -565,6 +619,72 @@
 
         open = !open;
       });
+
+      // Animation
+      document.addEventListener("DOMContentLoaded", function () {
+        const elements = document.querySelectorAll(".animate-once");
+
+        const observer = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const delay = entry.target.dataset.delay || 0;
+
+                setTimeout(() => {
+                  entry.target.classList.add("show");
+                }, delay);
+
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.2 },
+        );
+
+        elements.forEach((el) => observer.observe(el));
+      });
+
+      // Typewriter
+      const elements = document.querySelectorAll(".type-once");
+
+      const observer = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              typeWriter(entry.target);
+
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.5 },
+      );
+
+      elements.forEach((el) => observer.observe(el));
+
+      function typeWriter(element) {
+        const text = element.textContent;
+
+        const speed = element.dataset.speed || 50;
+
+        element.textContent = "";
+
+        element.classList.add("show");
+
+        let i = 0;
+
+        function typing() {
+          if (i < text.length) {
+            element.textContent += text.charAt(i);
+
+            i++;
+
+            setTimeout(typing, speed);
+          }
+        }
+
+        typing();
+      }
     </script>
   </body>
 </html>
