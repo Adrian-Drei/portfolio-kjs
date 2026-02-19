@@ -171,14 +171,20 @@
         <nav
           class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest text-[#816a6a]"
         >
-          <a class="hover:text-primary transition-colors" href="#about">
+          <a
+            class="hover:text-primary transition-colors duration-200"
+            href="#about"
+          >
             About
           </a>
-          <a class="hover:text-primary transition-colors" href="#experience">
+          <a
+            class="hover:text-primary transition-colors duration-200"
+            href="#experience"
+          >
             Experience
           </a>
           <a
-            class="hover:text-primary transition-colors border-b border-primary/40"
+            class="hover:text-primary transition-colors duration-200"
             href="#contact"
           >
             Contact
@@ -688,6 +694,33 @@
 
         typing();
       }
+
+      // Active nav border when section is in viewport
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll("header nav a");
+
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              navLinks.forEach((link) => {
+                link.classList.remove("border-b", "border-primary/40");
+              });
+
+              const activeLink = document.querySelector(
+                `header nav a[href="#${entry.target.id}"]`,
+              );
+
+              if (activeLink) {
+                activeLink.classList.add("border-b", "border-primary/40");
+              }
+            }
+          });
+        },
+        { threshold: 0.6 },
+      );
+
+      sections.forEach((section) => sectionObserver.observe(section));
     </script>
   </body>
 </html>
